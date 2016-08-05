@@ -17,8 +17,8 @@
       email = document.getElementById('email');
 
   // ADDRESS BOOK DISPLAY >>>>>>>>>>>>>>>>>>>> //
-  var divAddressBook = document.getElementById('divAddBook');
-  console.log( 'divAddressBook: ' + JSON.stringify(divAddressBook) );
+  var divAddBook = document.getElementById('divAddBook');
+  console.log( 'divAddBook: ' + JSON.stringify(divAddBook) );
 
   // STORAGE ARRAY >>>>>>>>>>>>>>>>>>>> //
   var arrAddressBook = [];
@@ -32,13 +32,22 @@
   btnCancel.addEventListener('click', function () {
     console.log('cancel button clicked');
     hide(divQuickAddForm);
+    clearForm();
   });
 
   btnAddContact.addEventListener('click', addContact);
 
-  divAddressBook.addEventListener('click', removeContact);
+  divAddBook.addEventListener('click', removeContact);
 
   // FUNCTIONS >>>>>>>>>>>>>>>>>>>> //
+  function jsonStructure(fullName, phone, address, city, email) {
+    this.fullName = fullName;
+    this.phone = phone;
+    this.address = address;
+    this.city = city;
+    this.email = email;
+  }
+
   function addContact () {
     console.log('add contact clicked');
     var isNull = fullName.value === "" &&
@@ -51,47 +60,17 @@
 
     if (!isNull) {
       console.log('contact added to local storage');
-      // var obj = new jsonStructure(fullname.value, phone.value, address.value, city.value, email.value);
-      var contact = {};
-      contact.fullName = fullName.value;
-      contact.phone = phone.value;
-      contact.address = address.value;
-      contact.city = city.value;
-      contact.email = email.value;
+
+      var contact = new jsonStructure(fullName.value, phone.value, address.value, city.value, email.value);
+      console.log("================= " + JSON.stringify(contact) );
 
       arrAddressBook.push(contact);
       localStorage.addressBook = JSON.stringify(arrAddressBook);
       clearForm();
-    }
-  }
+      hide(quickAddForm);
+      // quickAddForm.style.display = "none";
 
-  function clearForm () {
-    console.log('clearform called');
-    var frm = document.querySelectorAll('divQuickAddForm');
-    console.log( 'frm: ' + JSON.stringify(frm) );
-    for ( var i in frm ) {
-      frm[i].value = '';
-    }
-  }
-
-  function showAddressBook () {
-    console.log("localStorage.addressBook: " + localStorage.addressBook);
-    if ( localStorage.addressBook === undefined ) {
-      localStorage.addressBook = '[]';
-    } else {
-      addressBook = JSON.parse(localStorage.addressBook);
-      divAddressBook.innerHTML = '';
-      for ( var n in addressBook ) {
-        var str = '<div class="entry">';
-            str += '<div class="name"><p>' + addressBook[n].fullName + '</p></div>';
-            str += '<div class="email"><p>' + addressBook[n].email + '</p></div>';
-            str += '<div class="phone"><p>' + addressBook[n].phone + '</p></div>';
-            str += '<div class="address"><p>' + addressBook[n].address + '</p></div>';
-            str += '<div class="city"><p>' + addressBook[n].city + '</p></div>';
-            str += '<div class="delete"><a href="#" class="btnDelete" data-id="' + n + '">Delete</a> </div>';
-            str += '</div>';
-            divAddressBook.innerHTML = str;
-      }
+      showAddressBook();
     }
   }
 
@@ -101,7 +80,37 @@
         var remID = e.target.getAttribute('data-id');
         arrAddressBook.splice(remID,1);
         localStorage.addressBook = JSON.stringify(arrAddressBook);
+        showAddressBook();
       }
+  }
+
+  function clearForm () {
+    console.log('clearform called');
+
+    var frm = document.querySelectorAll(".formField");
+    for ( var i = 0; i < frm.length; i++ ) { frm[i].value = ''; }
+  }
+
+  function showAddressBook () {
+    console.log("==> localStorage.addressBook: " + localStorage.addressBook);
+    if ( localStorage.addressBook === undefined ) {
+      localStorage.addressBook = '[]';
+    } else {
+      arrAddressBook = JSON.parse(localStorage.addressBook);
+      divAddBook.innerHTML = '';
+      for ( var i = 0; i < arrAddressBook.length; i++ ) {
+        var str = '<div class="entry row">';
+            str += '<div class="name"><p>' + arrAddressBook[i].fullName + '</p></div>';
+            str += '<div class="email"><p>' + arrAddressBook[i].email + '</p></div>';
+            str += '<div class="phone"><p>' + arrAddressBook[i].phone + '</p></div>';
+            str += '<div class="address"><p>' + arrAddressBook[i].address + '</p></div>';
+            str += '<div class="city"><p>' + arrAddressBook[i].city + '</p></div>';
+            str += '<div class="delete"><p><a href="#" class="btnDelete" data-id="' + i + '">Delete</a></p></div>';
+            str += '</div>';
+
+            divAddBook.innerHTML += str;
+      }
+    }
   }
 
   function show (el) {
@@ -115,8 +124,9 @@
   // return Book;
 
 // })(jQuery);
+showAddressBook();
 
 $(document).ready(function () {
   console.log('document is ready');
-  showAddressBook();
+  // showAddressBook();
 });

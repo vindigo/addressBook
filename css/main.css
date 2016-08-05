@@ -96,8 +96,12 @@ textarea {
    ========================================================================== */
 .container {
   margin: 0 auto;
-  width: 600px;
+  width: 90%;
 }
+.row {
+  display: block;
+  float: none;
+};
 .title {
   border-bottom: 1px solid #000;
   font-size: 30px;
@@ -114,7 +118,7 @@ fieldset {
 }
 
 .title, fieldset {
-  width: 500px;
+  width: au;
 }
 legend { font-size: 30px; }
 label {
@@ -140,14 +144,9 @@ button {
 }
 
 #divAddBook .entry > div {
-  background-color: #00cccc;
+  background-color: #a9c4e5;
   float: left;
-}
-
-.delete {
-  background-color: #ff0000;
-  padding-left: 10px;
-  width: 55px;
+  padding: 0 10px 0;
 }
 
 .delete a {
@@ -155,6 +154,9 @@ button {
   text-decoration: none;
 }
 
+.delete:hover a {
+  color: #f00;
+}
 
 
 
