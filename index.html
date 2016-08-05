@@ -1,0 +1,38 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+          <div class="title">Address Book</div>
+          <div class="quickAdd clearfix"><button id="quickAdd">+ Add</button></div>
+          <div id="quickAddForm" class="hidden">
+            <fieldset>
+            <p><label for="fullName">Full Name</label><input type="text" id="fullName" class="formField"></p>
+            <p><label for="phone">Phone</label><input type="text" id="phone" class="formField"></p>
+            <p><label for="address">Address</label><input type="textarea" name="address" id="address" col="30" rows="10" class="formField"></p>
+            <p><label for="city">City</label><input type="text" id="city" class="formField"></p>
+            <p><label for="email">Email</label><input type="text" id="email" class="formField"></p>
+            <br /><br />
+            <button id="cancel">Cancel</button>
+            <button id="addContact">Add Contact</button>
+            </fieldset>
+          </div>
+          <div id="divAddBook"></div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>

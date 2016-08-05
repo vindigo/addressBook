@@ -1,0 +1,13 @@
+{
+  "name": "addressBook",
+  "version": "0.0.1",
+  "homepage": "",
+  "author": {
+    "name": "Richard Frausto",
+    "email": "vindigo@gmail.com"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-serve": "^0.1.6"
+  }
+}
