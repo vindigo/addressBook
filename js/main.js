@@ -18,19 +18,16 @@
 
   // ADDRESS BOOK DISPLAY >>>>>>>>>>>>>>>>>>>> //
   var divAddBook = document.getElementById('divAddBook');
-  console.log( 'divAddBook: ' + JSON.stringify(divAddBook) );
 
   // STORAGE ARRAY >>>>>>>>>>>>>>>>>>>> //
   var arrAddressBook = [];
 
   // EVENT LISTENERS >>>>>>>>>>>>>>>>>>>> //
   btnQuickAdd.addEventListener('click', function () {
-    console.log('Add button clicked');
     show(divQuickAddForm);
   });
 
   btnCancel.addEventListener('click', function () {
-    console.log('cancel button clicked');
     hide(divQuickAddForm);
     clearForm();
   });
@@ -49,20 +46,14 @@
   }
 
   function addContact () {
-    console.log('add contact clicked');
     var isNull = fullName.value === "" &&
       phone.value === "" &&
       address.value === "" &&
       city.value === "" &&
       email.value === "";
 
-    console.log('isNull: ' + isNull);
-
     if (!isNull) {
-      console.log('contact added to local storage');
-
       var contact = new jsonStructure(fullName.value, phone.value, address.value, city.value, email.value);
-      console.log("================= " + JSON.stringify(contact) );
 
       arrAddressBook.push(contact);
       localStorage.addressBook = JSON.stringify(arrAddressBook);
@@ -75,7 +66,6 @@
   }
 
   function removeContact (e) {
-      console.log('removeContact called');
       if ( e.target.classList.contains('btnDelete')) {
         var remID = e.target.getAttribute('data-id');
         arrAddressBook.splice(remID,1);
@@ -85,14 +75,11 @@
   }
 
   function clearForm () {
-    console.log('clearform called');
-
     var frm = document.querySelectorAll(".formField");
     for ( var i = 0; i < frm.length; i++ ) { frm[i].value = ''; }
   }
 
   function showAddressBook () {
-    console.log("==> localStorage.addressBook: " + localStorage.addressBook);
     if ( localStorage.addressBook === undefined ) {
       localStorage.addressBook = '[]';
     } else {
@@ -125,8 +112,3 @@
 
 // })(jQuery);
 showAddressBook();
-
-$(document).ready(function () {
-  console.log('document is ready');
-  // showAddressBook();
-});
