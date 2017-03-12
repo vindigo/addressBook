@@ -96,11 +96,11 @@ textarea {
    ========================================================================== */
 .container {
   margin: 0 auto;
-  width: 90%;
+  width: 700px;
 }
 .row {
-  display: block;
-  float: none;
+  float: left;
+  width: 700px;
 };
 .title {
   border-bottom: 1px solid #000;
